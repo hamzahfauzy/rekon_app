@@ -27,10 +27,32 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function welcome()
+    {
+        return view('welcome', array('employee' => array()));
+    }
+
     public function cari($nip)
     {
-        $employee = Employee::where('nip',$nip)->firstOrFail();
-        
-        return view('cari',compact('employee'));
+        $employee = Employee::where('nip', $nip)->first();
+        if (!$employee) {
+            return redirect()->route('welcome')->with('status', 'Data pegawai tidak ditemukan !');
+        }
+
+
+        return view('welcome', compact('employee'));
+    }
+
+    public function edit(Employee $employee)
+    {
+        //
+        return view('page.edit', compact('employee'));
+    }
+
+    public function updatePegawai(Request $request, Employee $employee)
+    {
+        //
+        $employee->update($request->all());
+        return redirect()->route('welcome')->with('sukses', 'Data pegawai berhasil di edit!');
     }
 }
