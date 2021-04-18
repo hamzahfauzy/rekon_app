@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         $employee = Employee::where('nip', $nip)->first();
         if (!$employee) {
-            return redirect()->route('welcome')->with('status', 'Data pegawai tidak ditemukan !');
+            return redirect()->route('welcome')->with('status', 'Data tidak ditemukan !');
         }
 
 
@@ -53,6 +53,6 @@ class HomeController extends Controller
     {
         //
         $employee->update($request->all());
-        return redirect()->route('welcome')->with('sukses', 'Data pegawai berhasil di edit!');
+        return redirect()->route('welcome')->with('sukses', 'Data berhasil disimpan!');
     }
 }
