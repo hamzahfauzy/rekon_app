@@ -39,68 +39,49 @@
     <!-- Masthead-->
     <header class="masthead">
         <div class="container h-50">
-            <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="row h-100 align-items-center justify-content-center">
                 <div class="col-lg-12 align-self-end">
-                    @if (session('status'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-                    @if (session('sukses'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('sukses') }}
-                    </div>
-                    @endif
-                    <div class="form-group">
-                        <!-- <label for="" class="text-white">NIP</label> -->
-                        <input type="text" name="nip" id="nip" class="form-control" placeholder="Masukan NIP Anda">
-                    </div>
-                    <button class="btn btn-primary" onclick="location='/cari/'+nip.value">Cari</button>
-                    <!-- <h1 class="text-uppercase text-white font-weight-bold">Your Favorite Source of Free Bootstrap Themes</h1> -->
-                    <!-- <hr class="divider my-4" /> -->
-                </div>
-
-                <div class="col-lg-12 align-self-baseline mt-3">
-
-                    @if($employee)
                     <div class="card">
-                        <div class="card-body">
 
+                        <div class="card-header">
+                            {{ __('Edit Pegawai') }}
 
-                            <div class="card-body table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-
-                                            <th>PNS ID</th>
-                                            <th>NIP</th>
-                                            <th>Nama</th>
-                                            <th>No. HP</th>
-                                            <th>Email</th>
-                                            <th>Email Gov</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-
-                                    <tr>
-
-                                        <td>{{$employee->pns_id}}</td>
-                                        <td>{{$employee->nip}}</td>
-                                        <td>{{$employee->nama}}</td>
-                                        <td>{{$employee->no_hp}}</td>
-                                        <td>{{$employee->email}}</td>
-                                        <td>{{$employee->email_gov}}</td>
-                                        <td>
-                                            <a href="{{route('home.edit',$employee->id)}}" class="btn btn-warning btn-sm">Edit</a>
-
-                                        </td>
-                                    </tr>
-
-                                </table>
-                            </div>
                         </div>
-                        @endif
+
+                        <div class="card-body">
+                            <form action="{{route('update',$employee->id)}}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <div class="form-group">
+                                    <label for="">PNS ID</label>
+                                    <input type="text" class="form-control" readonly value="{{$employee->pns_id}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">NIP</label>
+                                    <input type="text" class="form-control" readonly value="{{$employee->nip}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Nama</label>
+                                    <input type="text" class="form-control" readonly value="{{$employee->nama}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">No. HP</label>
+                                    <input type="text" class="form-control" name="no_hp" value="{{$employee->no_hp}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Email</label>
+                                    <input type="text" class="form-control" name="email" value="{{$employee->email}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Email Gov</label>
+                                    <input type="text" class="form-control" name="email_gov" value="{{$employee->email_gov}}">
+                                </div>
+                                <button class="btn btn-success">Simpan</button>
+                                <a href="{{ ('/')}}" class="btn btn-danger">Kembali</a>
+                            </form>
+                        </div>
                     </div>
+
                 </div>
             </div>
     </header>
