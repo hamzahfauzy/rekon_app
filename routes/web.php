@@ -22,6 +22,10 @@ Route::get('/', function () {
 Route::get('cari/{nip}',[HomeController::class,'cari'])->name('cari');
 
 Auth::routes();
+Route::get('/employees/import',[App\Http\Controllers\EmployeeController::class, 'import'])->name('employees.import');
+Route::get('/employees/getdataemployee',[App\Http\Controllers\EmployeeController::class, 'getdataemployee'])->name('employees.getdataemployee');
+Route::post('/employees/storeimport',[App\Http\Controllers\EmployeeController::class, 'storeimport'])->name('employees.storeimport');
+
 Route::resource('employees',EmployeeController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('update-pegawai',[HomeController::class,'updatePegawai'])->name('update-pegawai');
