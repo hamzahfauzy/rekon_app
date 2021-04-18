@@ -37,9 +37,6 @@
             /* color: #9DBFAF; */
         }
 
-        .searchTerm:focus {
-            color: #00B4CC;
-        }
 
         .searchButton {
             width: 50px;
@@ -83,14 +80,16 @@
                     <h4 class="text-white">Aplikasi Sistem Informasi Rekonsiliasi Data Pegawai</h4>
                     <h4 class="text-white">Kabupaten Labuhanbatu Utara</h4>
                     @if (session('status'))
-                    <div class="alert alert-danger" role="alert">
-                        {{ session('status') }}
-                    </div>
+
+                    <div class="flashdata-fail" data-flashdata="{{ session('status') }}"></div>
+
+
                     @endif
                     @if (session('sukses'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="flashdata-success" data-flashdata="{{ session('sukses') }}"></div>
+                    <!-- <div class="alert alert-success flashdata-success" role="alert">
                         {{ session('sukses') }}
-                    </div>
+                    </div> -->
                     @endif
                     <div class="form-group mt-4">
                         <div class="wrap">
@@ -174,7 +173,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <!-- Core theme JS-->
-    <script src="{{ asset('resouce/js/scripts.js') }}"></script>
+    <script src="{{ asset('resource/js/scripts.js') }}"></script>
+    <script src="{{ asset('resource/sweetalert2/package/dist/sweetalert2.all.min.js') }}"></script>
+
+    <script src="{{ asset('resource/sweetalert2/package/dist/js.js')}}"></script>
+
 </body>
 
 </html>
