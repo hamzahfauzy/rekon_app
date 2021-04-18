@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <title>Rekon Labura</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('resource/assets/img/logo.png') }} " />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -52,30 +52,39 @@
                             <form action="{{route('update',$employee->id)}}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">PNS ID</label>
                                     <input type="text" class="form-control" readonly value="{{$employee->pns_id}}">
+                                </div> -->
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">NIP</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" readonly value="{{$employee->nip}}">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">NIP</label>
-                                    <input type="text" class="form-control" readonly value="{{$employee->nip}}">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">Nama</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control col-sm-12" readonly value="{{$employee->nama}}">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Nama</label>
-                                    <input type="text" class="form-control" readonly value="{{$employee->nama}}">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="email" value="{{$employee->email}}">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">No. HP</label>
-                                    <input type="text" class="form-control" name="no_hp" value="{{$employee->no_hp}}">
+                                <div class="form-group row">
+                                    <label for="" class="col-sm-2 col-form-label">No. HP</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="no_hp" value="{{$employee->no_hp}}">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Email</label>
-                                    <input type="text" class="form-control" name="email" value="{{$employee->email}}">
-                                </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Email Gov</label>
                                     <input type="text" class="form-control" name="email_gov" value="{{$employee->email_gov}}">
-                                </div>
+                                </div> -->
+                                <br>
                                 <button class="btn btn-success">Simpan</button>
                                 <a href="{{ ('/')}}" class="btn btn-danger">Kembali</a>
                             </form>
@@ -87,11 +96,11 @@
     </header>
 
     <!-- Footer-->
-    <footer class="bg-light py-5">
+    <!-- <footer class="bg-light py-5">
         <div class="container">
             <div class="small text-center text-muted">Copyright © 2020 - Start Bootstrap</div>
         </div>
-    </footer>
+    </footer> -->
     <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
