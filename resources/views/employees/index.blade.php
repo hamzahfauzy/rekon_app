@@ -9,8 +9,7 @@
                     {{ __('Data Pegawai') }}
 
                     <div class="float-right">
-                        <a href="" class="btn btn-primary">Import</a>
-                        <a href="" class="btn btn-success">Export</a>
+                        <a href="{{ route('employees.import') }}" class="btn btn-primary">Import</a>
                     </div>
                 </div>
 
@@ -21,40 +20,66 @@
                         </div>
                     @endif
 
-                    <table class="table table-bordered">
+                    <table id="datatableEmployee" class="table table-striped">
                         <thead>
                         <tr>
                             <th>No</th>
                             <th>PNS ID</th>
                             <th>NIP</th>
-                            <th>Nama</th>
+                            <th width="250px">Nama</th>
                             <th>No. HP</th>
                             <th>Email</th>
                             <th>Email Gov</th>
-                            <th></th>
+                            <th width="80px"></th>
                         </tr>
                         </thead>
-                        @forelse($employees as $key => $employee)
-                        <tr>
-                            <td>{{++$key}}</td>
-                            <td>{{$employee->pns_id}}</td>
-                            <td>{{$employee->nip}}</td>
-                            <td>{{$employee->nama}}</td>
-                            <td>{{$employee->no_hp}}</td>
-                            <td>{{$employee->email}}</td>
-                            <td>{{$employee->email_gov}}</td>
-                            <td>
-                                <a href="{{route('employees.edit',$employee->id)}}" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="" class="btn btn-danger btn-sm">Hapus</a>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr><td colspan="8"><i>Tidak ada data</i></td></tr>
-                        @endforelse
                     </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.colVis.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#datatableEmployee').DataTable( {
+                ajax: {
+                    url: '{{ route('employees.getdataemployee') }}',
+                    dataSrc: 'data'
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'csv', 'excel'
+                ],
+                buttons: [
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: [ 0, 1, 2, 3, 4,5, 6 ]
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [ 0, 1, 2, 3, 4,5, 6 ]
+                        }
+                    },
+                    // 'colvis'
+                ],
+                scrollX:        true,
+                fnInitComplete: function(oSettings, json) {
+                    $('.dataTables_scrollBody').css('overflow-y', 'hidden');
+                },
+
+            } );
+        } );
+    </script>
+
 @endsection
