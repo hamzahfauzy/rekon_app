@@ -3,4 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/rekon/
     - /bin/cp -a * $DEPLOYPATH
-    - /bin/cp -a public/* /home/rekon/public_html
+    - /bin/cp -r public /home/rekon/public_html
